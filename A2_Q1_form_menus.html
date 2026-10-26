@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Designing HTML5 Forms</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6fa;color:#222}
+header,footer{background:#1f3a68;color:#fff;padding:12px 20px}
+nav a{color:#fff;margin-right:16px;text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+main{padding:20px;max-width:1000px;margin:auto}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid #888;padding:8px;text-align:center}
+th{background:#dde6f5}
+caption{font-weight:bold;padding:8px}
+label{display:block;margin-top:10px;font-weight:600}
+input[type=text],input[type=number],textarea,select{padding:6px;width:100%;max-width:380px;box-sizing:border-box}
+button,input[type=submit]{padding:8px 16px;margin-top:10px;cursor:pointer}
+</style>
+
+</head>
+<body>
+
+<main><h2>Registration Form</h2>
+<form>
+<label>Title
+<select name="title"><option>Mr</option><option>Mrs</option><option>Miss</option><option>Ms</option><option>Dr</option></select></label>
+<label>Age (20 to 45) <select id="age" name="age"></select></label>
+<label>Gender</label>
+<label><input type="radio" name="gender" value="Male"> Male</label>
+<label><input type="radio" name="gender" value="Female"> Female</label>
+<label>Status</label>
+<label><input type="radio" name="status" value="Employed"> Employed</label>
+<label><input type="radio" name="status" value="Unemployed"> Unemployed</label>
+<label><input type="radio" name="status" value="Student"> Student</label>
+<h3>Date of Birth (scrolling menus)</h3>
+<select id="day" size="5"></select>
+<select id="month" size="5"></select>
+<select id="year" size="5"></select>
+<p><input type="submit" value="Submit"></p>
+</form></main>
+<script>
+function fill(id, items){const s=document.getElementById(id);items.forEach(v=>s.add(new Option(v,v)));}
+fill('age', Array.from({length:26},(_,i)=>20+i));
+fill('day', Array.from({length:31},(_,i)=>i+1));
+fill('month', ["January","February","March","April","May","June","July","August","September","October","November","December"]);
+fill('year', Array.from({length:12},(_,i)=>1999+i));
+</script>
+
+</body>
+</html>

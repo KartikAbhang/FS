@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where am I?</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6fa;color:#222}
+header,footer{background:#1f3a68;color:#fff;padding:12px 20px}
+nav a{color:#fff;margin-right:16px;text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+main{padding:20px;max-width:1000px;margin:auto}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid #888;padding:8px;text-align:center}
+th{background:#dde6f5}
+caption{font-weight:bold;padding:8px}
+label{display:block;margin-top:10px;font-weight:600}
+input[type=text],input[type=number],textarea,select{padding:6px;width:100%;max-width:380px;box-sizing:border-box}
+button,input[type=submit]{padding:8px 16px;margin-top:10px;cursor:pointer}
+</style>
+
+</head>
+<body>
+
+<main>
+<h2>Geolocation</h2>
+<button onclick="whereAmI()">Where am I?</button>
+<p id="loc">Click the button to see your location.</p>
+
+<h2>Canvas</h2>
+<canvas id="cv" width="220" height="220" style="border:1px solid #333;background:#fff"></canvas>
+
+<h2>SVG Star (Pentagon star)</h2>
+<svg width="220" height="220" viewBox="0 0 220 220" style="background:#fff;border:1px solid #333">
+ <polygon points="110,15 133,85 205,85 147,128 168,198 110,155 52,198 73,128 15,85 87,85" fill="gold" stroke="darkorange" stroke-width="3"/>
+ <polygon points="110,45 160,170 40,90 180,90 60,170" fill="none" stroke="red" stroke-width="2" transform="translate(0,5)"/>
+</svg>
+
+<h2>Audio / Video</h2>
+<audio controls><source src="sample.mp3" type="audio/mpeg">Your browser does not support audio.</audio><br><br>
+<video controls width="320"><source src="sample.mp4" type="video/mp4">Your browser does not support video.</video>
+<p><small>Place sample.mp3 and sample.mp4 in the same folder.</small></p>
+</main>
+<script>
+function whereAmI(){
+  const out=document.getElementById('loc');
+  if(!navigator.geolocation){out.textContent='Geolocation not supported.';return;}
+  out.textContent='Locating...';
+  navigator.geolocation.getCurrentPosition(async pos=>{
+    const {latitude:lat, longitude:lon}=pos.coords;
+    out.innerHTML='Latitude: '+lat.toFixed(5)+'<br>Longitude: '+lon.toFixed(5);
+    try{
+      const r=await fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+lon);
+      const d=await r.json();
+      out.innerHTML+='<br>Address: '+d.display_name;
+    }catch(e){}
+  }, err=>{out.textContent='Error: '+err.message;});
+}
+// Canvas: 5-pointed star
+(function(){
+  const c=document.getElementById('cv').getContext('2d');
+  c.beginPath();
+  for(let i=0;i<5;i++){
+    const a=-Math.PI/2+i*4*Math.PI/5;
+    const x=110+90*Math.cos(a), y=115+90*Math.sin(a);
+    i?c.lineTo(x,y):c.moveTo(x,y);
+  }
+  c.closePath(); c.fillStyle='gold'; c.fill('evenodd'); c.lineWidth=3; c.strokeStyle='darkorange'; c.stroke();
+})();
+</script>
+
+</body>
+</html>

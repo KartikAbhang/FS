@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery Text Counter</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6fa;color:#222}
+header,footer{background:#1f3a68;color:#fff;padding:12px 20px}
+nav a{color:#fff;margin-right:16px;text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+main{padding:20px;max-width:1000px;margin:auto}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid #888;padding:8px;text-align:center}
+th{background:#dde6f5}
+caption{font-weight:bold;padding:8px}
+label{display:block;margin-top:10px;font-weight:600}
+input[type=text],input[type=number],textarea,select{padding:6px;width:100%;max-width:380px;box-sizing:border-box}
+button,input[type=submit]{padding:8px 16px;margin-top:10px;cursor:pointer}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+<main><h2>Text Length Counter</h2>
+<textarea id="txt" rows="6" cols="50" maxlength="200" placeholder="Type here (max 200)"></textarea><br>
+<progress id="bar" value="0" max="200" style="width:380px"></progress>
+<p>Live counter: <b id="live">0</b> / 200</p>
+<button id="btn">Show Length</button>
+<p id="result"></p></main>
+<script>
+$(function(){
+  $('#txt').on('input keyup', function(){
+    const n=$(this).val().length;
+    $('#live').text(n);
+    $('#bar').val(n);
+  });
+  $('#btn').click(function(){
+    $('#result').text('Length of text entered: '+$('#txt').val().length);
+  });
+});
+</script>
+
+</body>
+</html>

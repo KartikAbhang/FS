@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drag and Drop</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6fa;color:#222}
+header,footer{background:#1f3a68;color:#fff;padding:12px 20px}
+nav a{color:#fff;margin-right:16px;text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+main{padding:20px;max-width:1000px;margin:auto}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid #888;padding:8px;text-align:center}
+th{background:#dde6f5}
+caption{font-weight:bold;padding:8px}
+label{display:block;margin-top:10px;font-weight:600}
+input[type=text],input[type=number],textarea,select{padding:6px;width:100%;max-width:380px;box-sizing:border-box}
+button,input[type=submit]{padding:8px 16px;margin-top:10px;cursor:pointer}
+</style>
+
+</head>
+<body>
+
+<main><h2>Drag the image into the rectangle</h2>
+<div id="rect" ondrop="drop(event)" ondragover="event.preventDefault()"
+ style="width:300px;height:200px;border:3px dashed #1f3a68;background:#fff;margin-bottom:20px"></div>
+<img id="pic" draggable="true" ondragstart="event.dataTransfer.setData('text', event.target.id)"
+ alt="Draggable blue box" width="120" height="80"
+ src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80'%3E%3Crect width='120' height='80' fill='%23e07a1f'/%3E%3Ctext x='60' y='46' fill='white' font-size='16' text-anchor='middle'%3EDrag me%3C/text%3E%3C/svg%3E">
+</main>
+<script>
+function drop(e){e.preventDefault();e.currentTarget.appendChild(document.getElementById(e.dataTransfer.getData('text')));}
+</script>
+
+</body>
+</html>

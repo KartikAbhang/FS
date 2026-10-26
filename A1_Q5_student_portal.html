@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Portal</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6fa;color:#222}
+header,footer{background:#1f3a68;color:#fff;padding:12px 20px}
+nav a{color:#fff;margin-right:16px;text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+main{padding:20px;max-width:1000px;margin:auto}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid #888;padding:8px;text-align:center}
+th{background:#dde6f5}
+caption{font-weight:bold;padding:8px}
+label{display:block;margin-top:10px;font-weight:600}
+input[type=text],input[type=number],textarea,select{padding:6px;width:100%;max-width:380px;box-sizing:border-box}
+button,input[type=submit]{padding:8px 16px;margin-top:10px;cursor:pointer}
+</style>
+
+</head>
+<body>
+
+<header><h1>Student Portal Dashboard</h1>
+<nav><a href="#timetable">Time-Table</a><a href="#inquiry">Inquiry</a><a href="A1_Q1_MultiPage/index.html">Home</a><a href="A1_Q1_MultiPage/courses.html">Modules</a><a href="A1_Q1_MultiPage/contact.html">Reach Us</a></nav></header>
+<div style="display:flex;gap:20px;flex-wrap:wrap;padding:20px">
+<main style="flex:3;min-width:380px;padding:0"><section id="timetable"><h2>My Time-Table</h2>
+<table>
+<caption>Weekly Lecture Timetable - M.Sc. Computer Science I (Sem I)</caption>
+<thead><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr></thead>
+<tbody>
+<tr><th scope="row">9:00 - 10:00</th><td>Full Stack</td><td>Crypto</td><td>Cloud</td><td>SC</td><td>Full Stack</td></tr>
+<tr><th scope="row">10:00 - 11:00</th><td>Cloud</td><td>SC</td><td>Crypto</td><td>Full Stack</td><td>Cloud</td></tr>
+<tr><th scope="row">11:00 - 12:00</th><td>Crypto</td><td>Cloud</td><td>SC</td><td>Crypto</td><td>SC</td></tr>
+<tr><th scope="row">12:00 - 1:00</th><td>SC</td><td>Crypto</td><td>Cloud</td><td>Cloud</td><td>Crypto</td></tr>
+<tr><th scope="row">1:00 - 2:00</th><td colspan="5"><b>LUNCH BREAK</b></td></tr>
+<tr><th scope="row">2:00 - 3:00</th><td rowspan="2">Lab / RP</td><td>Cloud</td><td rowspan="2">Lab / RP</td><td>Crypto</td><td rowspan="2">Lab / RP</td></tr>
+<tr><th scope="row">3:00 - 4:00</th><td>SC</td><td>Full Stack</td></tr>
+</tbody>
+<tfoot><tr><td colspan="6">Subject abbreviations: SC = Soft Computing, RP = Research Project</td></tr></tfoot>
+</table>
+</section></main>
+<aside id="inquiry" style="flex:1;min-width:280px"><h2>Admission Inquiry</h2>
+<form id="inq" onsubmit="event.preventDefault();alert('Inquiry submitted for '+this.sname.value);">
+<fieldset><legend>Admission Inquiry</legend>
+<label>Full Name <input type="text" name="sname" required></label>
+<label>Email <input type="text" name="email" required></label>
+<label>Phone <input type="text" name="phone"></label>
+<label>Course</label>
+<label><input type="radio" name="course" value="MSc CS" checked> M.Sc. Computer Science</label>
+<label><input type="radio" name="course" value="MCA"> MCA</label>
+<label><input type="radio" name="course" value="MSc IT"> M.Sc. IT</label>
+<label>Elective Subjects</label>
+<label><input type="checkbox" name="el" value="Cloud"> Cloud Computing</label>
+<label><input type="checkbox" name="el" value="Crypto"> Cryptography</label>
+<label><input type="checkbox" name="el" value="AI"> Artificial Intelligence</label>
+<label>State
+<select name="state"><option>Maharashtra</option><option>Gujarat</option><option>Karnataka</option><option>Goa</option><option>Other</option></select></label>
+<label>Your Query <textarea name="query" rows="6"></textarea></label>
+<input type="submit" value="Submit">
+</fieldset></form>
+</aside>
+</div>
+<footer>&copy; 2026 Dept. of Computer Science</footer>
+
+</body>
+</html>

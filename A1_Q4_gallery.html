@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multimedia Gallery</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6fa;color:#222}
+header,footer{background:#1f3a68;color:#fff;padding:12px 20px}
+nav a{color:#fff;margin-right:16px;text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+main{padding:20px;max-width:1000px;margin:auto}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid #888;padding:8px;text-align:center}
+th{background:#dde6f5}
+caption{font-weight:bold;padding:8px}
+label{display:block;margin-top:10px;font-weight:600}
+input[type=text],input[type=number],textarea,select{padding:6px;width:100%;max-width:380px;box-sizing:border-box}
+button,input[type=submit]{padding:8px 16px;margin-top:10px;cursor:pointer}
+</style>
+
+</head>
+<body>
+
+<header><h1>Resource Gallery</h1></header>
+<main>
+<section style="display:flex;gap:20px;flex-wrap:wrap">
+ <div style="flex:1;min-width:300px">
+  <h3>Campus Map (iframe)</h3>
+  <iframe title="Fergusson College map" width="100%" height="300"
+   src="https://www.openstreetmap.org/export/embed.html?bbox=73.8330%2C18.5160%2C73.8530%2C18.5280&amp;layer=mapnik"></iframe>
+ </div>
+ <div style="flex:1;min-width:300px">
+  <h3>Image (img tag)</h3>
+  <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='160'%3E%3Crect width='240' height='160' fill='%231f3a68'/%3E%3Ctext x='120' y='88' fill='white' font-size='22' text-anchor='middle'%3EUniversity%3C/text%3E%3C/svg%3E" alt="Blue banner with the word University" width="240" height="160">
+  <h3>Thumbnail link</h3>
+  <a href="https://www.unipune.ac.in" target="_blank" rel="noopener">
+   <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='160'%3E%3Crect width='240' height='160' fill='%231f3a68'/%3E%3Ctext x='120' y='88' fill='white' font-size='22' text-anchor='middle'%3EUniversity%3C/text%3E%3C/svg%3E" alt="Click to open the Savitribai Phule Pune University portal" width="120" height="80"></a>
+  <p>Click the thumbnail to open the official university portal.</p>
+ </div>
+</section>
+</main>
+
+</body>
+</html>

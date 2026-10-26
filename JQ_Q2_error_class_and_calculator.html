@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery CSS and Events</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6fa;color:#222}
+header,footer{background:#1f3a68;color:#fff;padding:12px 20px}
+nav a{color:#fff;margin-right:16px;text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+main{padding:20px;max-width:1000px;margin:auto}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid #888;padding:8px;text-align:center}
+th{background:#dde6f5}
+caption{font-weight:bold;padding:8px}
+label{display:block;margin-top:10px;font-weight:600}
+input[type=text],input[type=number],textarea,select{padding:6px;width:100%;max-width:380px;box-sizing:border-box}
+button,input[type=submit]{padding:8px 16px;margin-top:10px;cursor:pointer}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>.error{border:2px solid red;background-color:yellow}</style>
+</head>
+<body>
+
+<main>
+<h2>Part A: Error class on blur</h2>
+<input type="text" id="t1" placeholder="Enter more than 10 characters">
+
+<h2>Part B: Calculator with enable/disable buttons</h2>
+<input type="text" id="a" placeholder="Number 1">
+<input type="text" id="b" placeholder="Number 2"><br>
+<button class="op" data-op="+" disabled>+</button>
+<button class="op" data-op="-" disabled>-</button>
+<button class="op" data-op="*" disabled>*</button>
+<button class="op" data-op="/" disabled>/</button>
+<p>Result: <b id="r"></b></p>
+</main>
+<script>
+$(function(){
+  // Part A
+  $('#t1').on('blur', function(){
+    $(this).toggleClass('error', $(this).val().length > 10);
+  });
+  // Part B: one function to enable/disable, triggered on blur
+  function toggleButtons(){
+    const ok = $('#a').val().trim()!=='' && $('#b').val().trim()!=='';
+    $('.op').prop('disabled', !ok);
+  }
+  $('#a, #b').on('blur', toggleButtons);
+  $('.op').click(function(){
+    const x=parseFloat($('#a').val()), y=parseFloat($('#b').val());
+    if(isNaN(x)||isNaN(y)){$('#r').text('Enter valid numbers');return;}
+    let v;
+    switch($(this).data('op')){case '+':v=x+y;break;case '-':v=x-y;break;case '*':v=x*y;break;case '/':v=y===0?'Cannot divide by 0':x/y;}
+    $('#r').text(v);
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arithmetic Utility</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6fa;color:#222}
+header,footer{background:#1f3a68;color:#fff;padding:12px 20px}
+nav a{color:#fff;margin-right:16px;text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+main{padding:20px;max-width:1000px;margin:auto}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid #888;padding:8px;text-align:center}
+th{background:#dde6f5}
+caption{font-weight:bold;padding:8px}
+label{display:block;margin-top:10px;font-weight:600}
+input[type=text],input[type=number],textarea,select{padding:6px;width:100%;max-width:380px;box-sizing:border-box}
+button,input[type=submit]{padding:8px 16px;margin-top:10px;cursor:pointer}
+</style>
+
+</head>
+<body>
+
+<main><h2>Arithmetic Calculator</h2>
+<label>Number 1 <input type="text" id="n1"></label>
+<label>Number 2 <input type="text" id="n2"></label>
+<button onclick="calc('+')">Addition</button>
+<button onclick="calc('-')">Subtraction</button>
+<button onclick="calc('*')">Multiplication</button>
+<button onclick="calc('/')">Division</button>
+<button onclick="calc('%')">Modulus</button>
+<label>Result <input type="text" id="res" readonly></label></main>
+<script>
+function calc(op){
+  const a=parseFloat(n1.value), b=parseFloat(n2.value);
+  if(isNaN(a)||isNaN(b)){res.value='Enter valid numbers';return;}
+  let r;
+  switch(op){case '+':r=a+b;break;case '-':r=a-b;break;case '*':r=a*b;break;
+   case '/':r=b===0?'Cannot divide by 0':a/b;break;case '%':r=a%b;}
+  res.value=r;
+}
+</script>
+
+</body>
+</html>

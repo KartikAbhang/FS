@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salary Slip</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6fa;color:#222}
+header,footer{background:#1f3a68;color:#fff;padding:12px 20px}
+nav a{color:#fff;margin-right:16px;text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+main{padding:20px;max-width:1000px;margin:auto}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid #888;padding:8px;text-align:center}
+th{background:#dde6f5}
+caption{font-weight:bold;padding:8px}
+label{display:block;margin-top:10px;font-weight:600}
+input[type=text],input[type=number],textarea,select{padding:6px;width:100%;max-width:380px;box-sizing:border-box}
+button,input[type=submit]{padding:8px 16px;margin-top:10px;cursor:pointer}
+</style>
+
+</head>
+<body>
+
+<main><h2>Employee Details</h2>
+<label>Employee ID <input type="text" id="eid"></label>
+<label>Name <input type="text" id="ename"></label>
+<label>Department <input type="text" id="dept"></label>
+<label>Basic Salary <input type="number" id="basic"></label>
+<button onclick="slip()">Generate Salary Slip</button>
+<div id="out" style="margin-top:20px"></div></main>
+<script>
+function slip(){
+  const b=parseFloat(document.getElementById('basic').value);
+  if(isNaN(b)||b<=0){alert('Enter a valid basic salary');return;}
+  const da=0.40*b, hra=0.20*b, gross=b+da+hra;
+  const pf=0.12*b, tax=0.10*gross, ded=pf+tax, net=gross-ded;
+  const f=v=>v.toFixed(2);
+  document.getElementById('out').innerHTML=`
+  <table style="max-width:420px"><caption>SALARY SLIP</caption>
+  <tr><th>Employee ID</th><td>${eid.value}</td></tr>
+  <tr><th>Name</th><td>${ename.value}</td></tr>
+  <tr><th>Department</th><td>${dept.value}</td></tr>
+  <tr><th>Basic</th><td>${f(b)}</td></tr>
+  <tr><th>DA (40%)</th><td>${f(da)}</td></tr>
+  <tr><th>HRA (20%)</th><td>${f(hra)}</td></tr>
+  <tr><th>Gross Pay</th><td>${f(gross)}</td></tr>
+  <tr><th>PF (12% of Basic)</th><td>${f(pf)}</td></tr>
+  <tr><th>TAX (10% of Gross)</th><td>${f(tax)}</td></tr>
+  <tr><th>Total Deduction</th><td>${f(ded)}</td></tr>
+  <tr><th>Net Pay</th><td><b>${f(net)}</b></td></tr></table>`;
+}
+</script>
+
+</body>
+</html>

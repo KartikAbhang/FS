@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Products</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6fa;color:#222}
+header,footer{background:#1f3a68;color:#fff;padding:12px 20px}
+nav a{color:#fff;margin-right:16px;text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+main{padding:20px;max-width:1000px;margin:auto}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid #888;padding:8px;text-align:center}
+th{background:#dde6f5}
+caption{font-weight:bold;padding:8px}
+label{display:block;margin-top:10px;font-weight:600}
+input[type=text],input[type=number],textarea,select{padding:6px;width:100%;max-width:380px;box-sizing:border-box}
+button,input[type=submit]{padding:8px 16px;margin-top:10px;cursor:pointer}
+</style>
+
+</head>
+<body>
+
+<main><h2>Product List</h2>
+<table>
+<thead><tr><th>Product</th><th>Price (Rs.)</th><th>Details</th></tr></thead>
+<tbody id="tb"></tbody>
+</table></main>
+<script>
+const products=[
+ {n:"Laptop",p:55000,d:"15.6-inch laptop, 16 GB RAM, 512 GB SSD."},
+ {n:"Smartphone",p:22000,d:"6.5-inch AMOLED display, 128 GB storage, 50 MP camera."},
+ {n:"Headphones",p:2500,d:"Wireless over-ear headphones with 30 hours of battery."},
+ {n:"Smart Watch",p:4500,d:"Heart-rate monitor, GPS and 7-day battery life."}];
+const tb=document.getElementById('tb');
+products.forEach((x,i)=>{
+  tb.insertAdjacentHTML('beforeend',
+   `<tr><td>${x.n}</td><td>${x.p}</td><td><button onclick="know(${i})">Know More</button></td></tr>
+    <tr id="d${i}" style="display:none"><td colspan="3"><i>${x.d}</i></td></tr>`);
+});
+function know(i){const r=document.getElementById('d'+i);r.style.display=r.style.display==='none'?'table-row':'none';}
+</script>
+
+</body>
+</html>
